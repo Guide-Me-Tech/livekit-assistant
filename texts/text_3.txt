@@ -1,0 +1,11 @@
+ as C for the 21st century.
+ It's a popular choice for high-performance server-side applications
+ and is the language that built tools like Docker,
+ CockroachDB, and DeGraph.
+ It was created at Google in 2007
+ by legends who really know their stuff,
+ like Ken Thompson, the inventor of the B and C programming languages.
+ Version 1.0 was released as open-source software in 2012.
+ It was designed for simplicity and efficiency,
+ and that's why we call it Go and not Go Lang.
+ The source code is compiled down to machine code.

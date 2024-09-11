@@ -1,0 +1,9 @@
+TTS 
+groq 
+livekit
+livekit-api
+faster-whisper
+python-dotenv
+spicy
+soundfile
+silero-vad
