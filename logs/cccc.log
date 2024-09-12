@@ -1,0 +1,1596 @@
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_BtGx3yWUTLTx"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /home/a/aslon/livekit-assistant/async_functions.py:150> exception=FileNotFoundError(2, 'No such file or directory')>
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/async_functions.py", line 203, in receive_audio_frames
+    with wave.open(f"output/full.wav", "wb") as wf:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/wave.py", line 633, in open
+    return Wave_write(f)
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/wave.py", line 425, in __init__
+    f = builtins.open(f, 'wb')
+        ^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/full.wav'
+INFO:root:received data from python-client: b'hello world'
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:root:received data from python-client: b'hello world'
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /home/a/aslon/livekit-assistant/async_functions.py:150> exception=TypeError("'async for' requires an object with __aiter__ method, got coroutine")>
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/async_functions.py", line 207, in receive_audio_frames
+    async for audio in ttswrapper(
+TypeError: 'async for' requires an object with __aiter__ method, got coroutine
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_Bhx4g2oh6w9b"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /home/a/aslon/livekit-assistant/async_functions.py:150> exception=TypeError('isin() received an invalid combination of arguments - got (test_elements=int, elements=Tensor, ), but expected one of:\n * (Tensor elements, Tensor test_elements, *, bool assume_unique = False, bool invert = False, Tensor out = None)\n * (Number element, Tensor test_elements, *, bool assume_unique = False, bool invert = False, Tensor out = None)\n * (Tensor elements, Number test_element, *, bool assume_unique = False, bool invert = False, Tensor out = None)\n')>
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/async_functions.py", line 207, in receive_audio_frames
+    async for audio in ttswrapper(
+  File "/home/a/aslon/livekit-assistant/async_tts.py", line 29, in ttswrapper
+    for gen in gens:
+  File "/home/a/aslon/livekit-assistant/xtts_funcs.py", line 148, in ttsStreamEnglishRus
+    for i, chunk in enumerate(chunks):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 36, in generator_context
+    response = gen.send(None)
+               ^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/TTS/tts/models/xtts.py", line 652, in inference_stream
+    gpt_generator = self.gpt.get_generator(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/TTS/tts/layers/xtts/gpt.py", line 603, in get_generator
+    return self.gpt_inference.generate_stream(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/TTS/tts/layers/xtts/stream_generator.py", line 186, in generate
+    model_kwargs["attention_mask"] = self._prepare_attention_mask_for_generation(
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/transformers/generation/utils.py", line 499, in _prepare_attention_mask_for_generation
+    torch.isin(elements=inputs, test_elements=pad_token_id).any()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: isin() received an invalid combination of arguments - got (test_elements=int, elements=Tensor, ), but expected one of:
+ * (Tensor elements, Tensor test_elements, *, bool assume_unique = False, bool invert = False, Tensor out = None)
+ * (Number element, Tensor test_elements, *, bool assume_unique = False, bool invert = False, Tensor out = None)
+ * (Tensor elements, Number test_element, *, bool assume_unique = False, bool invert = False, Tensor out = None)
+
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:root:received data from python-client: b'hello world'
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /home/a/aslon/livekit-assistant/async_functions.py:150> exception=AttributeError("'NoneType' object has no attribute 'write'")>
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/async_functions.py", line 171, in receive_audio_frames
+    wf.writeframes(buffer.data)
+  File "/usr/lib/python3.11/wave.py", line 558, in writeframes
+    self.writeframesraw(data)
+  File "/usr/lib/python3.11/wave.py", line 553, in writeframesraw
+    self._file.write(data)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'write'
+ERROR:livekit:error putting to queue: Event loop is closed
+ERROR:livekit:error putting to queue: Event loop is closed
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_MksYky9e8UEx"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:root:received data from python-client: b'hello world'
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:root:received data from python-client: b'hello world'
+INFO:root:track unsubscribed: TR_AM7RPST7bufvcb
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 9
+    }
+    info {
+      sid: "PA_wdjLy2RUXzq2"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:root:received data from python-client: b'hello world'
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_kjcQGLQJTwLu"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMyfqMYtc4zb7A"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 141, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /home/a/aslon/livekit-assistant/async_functions.py:150> exception=AssertionError(' ❗ XTTS can only generate text with a maximum of 400 tokens.')>
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/async_functions.py", line 207, in receive_audio_frames
+    async for audio in ttswrapper(token, "en"):
+  File "/home/a/aslon/livekit-assistant/async_tts.py", line 29, in ttswrapper
+    for gen in gens:
+  File "/home/a/aslon/livekit-assistant/xtts_funcs.py", line 148, in ttsStreamEnglishRus
+    for i, chunk in enumerate(chunks):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 36, in generator_context
+    response = gen.send(None)
+               ^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/TTS/tts/models/xtts.py", line 645, in inference_stream
+    text_tokens.shape[-1] < self.args.gpt_max_text_tokens
+AssertionError:  ❗ XTTS can only generate text with a maximum of 400 tokens.
+INFO:root:received data from python-client: b'hello world'
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_gTxzjprUYzVq"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AM2rmky5sww9Pp"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 141, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:root:received data from python-client: b'hello world'
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_pRy9AAuCUFeq"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMKQthEve27TVW"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 141, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /home/a/aslon/livekit-assistant/async_functions.py:151> exception=AttributeError("'dict' object has no attribute 'content'")>
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/async_functions.py", line 199, in receive_audio_frames
+    messages=groq_client.ConstructMessages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/llm/groq.py", line 53, in ConstructMessages
+    "content": message.content,
+               ^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'content'
+INFO:root:received data from python-client: b'hello world'
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_nEhZ4rpRqMb9"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMDVhkcQpAU7qj"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 141, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /home/a/aslon/livekit-assistant/async_functions.py:151> exception=TypeError("'async for' requires an object with __aiter__ method, got generator")>
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/async_functions.py", line 198, in receive_audio_frames
+    async for token in groq_client.QueryStreams(
+TypeError: 'async for' requires an object with __aiter__ method, got generator
+INFO:root:received data from python-client: b'hello world'
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_AaWgyUgq7RwL"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMmwoQq7vKn4hS"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 141, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_Qusy9MAZEyVR"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMXsVvYkPYNT96"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 141, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMXsVvYkPYNT96"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_nHiVqaiEfukX"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+ERROR:livekit:livekit_api::signal_client::signal_stream:148:livekit_api::signal_client::signal_stream - failed to send pong message: Protocol(SendAfterClosing)
+INFO:livekit:livekit::room:1027:livekit::room - disconnected from room with reason: JoinFailure
+INFO:root:connection state changed: 0
+ERROR:root:error running user callback for disconnected: room_handle: 3
+disconnected {
+  reason: JOIN_FAILURE
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 505, in _on_room_event
+    self.emit("disconnected", event.disconnected.reason)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_disconnected() takes 0 positional arguments but 1 was given
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<Room._listen_task() running at /home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py:249> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_TrF59wZRJMv5"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMsYx8KYwKxfmk"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /home/a/aslon/livekit-assistant/async_functions.py:66> exception=TypeError('Audio cannot be casted to tensor. Cast it manually')>
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/silero_vad/utils_vad.py", line 251, in get_speech_timestamps
+    audio = torch.Tensor(audio)
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/torch/jit/_script.py", line 879, in __len__
+    return self.forward_magic_method("__len__")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/torch/jit/_script.py", line 869, in forward_magic_method
+    raise NotImplementedError
+NotImplementedError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/async_functions.py", line 99, in receive_audio_frames
+    speech_timestamps = await process_vad(output_filename)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/async_stt.py", line 26, in process_vad
+    speech_timestamps = get_speech_timestamps(vad_model, wav)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/silero_vad/utils_vad.py", line 253, in get_speech_timestamps
+    raise TypeError("Audio cannot be casted to tensor. Cast it manually")
+TypeError: Audio cannot be casted to tensor. Cast it manually
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_WUEWcwYgBV75"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMy2qVHZvvKFPb"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:faster_whisper:Processing audio with duration 00:30.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ERROR:livekit:error putting to queue: Event loop is closed
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_QTZiiC7xy9DE"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMgmu9TzEyXaTL"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /home/a/aslon/livekit-assistant/async_functions.py:66> exception=FileNotFoundError(2, 'No such file or directory', 'audio_new')>
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/async_functions.py", line 102, in receive_audio_frames
+    stt_text = await process_audio_with_timeout(output_filename)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/async_stt.py", line 66, in process_audio_with_timeout
+    await asyncio.wait_for(process_stt(wav_arr), timeout=1.0)
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/async_stt.py", line 41, in process_stt
+    segments, info = stt_model.transcribe("audio_new", language="uz")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/faster_whisper/transcribe.py", line 319, in transcribe
+    audio = decode_audio(audio, sampling_rate=sampling_rate)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/faster_whisper/audio.py", line 46, in decode_audio
+    with av.open(input_file, mode="r", metadata_errors="ignore") as container:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "av/container/core.pyx", line 420, in av.container.core.open
+  File "av/container/core.pyx", line 266, in av.container.core.Container.__cinit__
+  File "av/container/core.pyx", line 286, in av.container.core.Container.err_check
+  File "av/error.pyx", line 326, in av.error.err_check
+av.error.FileNotFoundError: [Errno 2] No such file or directory: 'audio_new'
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_EaP8jEHNBdyd"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMgTQamFgKvkwP"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:root:track unsubscribed: TR_AMgTQamFgKvkwP
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 7095
+    }
+    info {
+      sid: "PA_ASZZJjrE9gd9"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+ERROR:root:error running user callback for participant_connected: room_handle: 3
+participant_connected {
+  info {
+    handle {
+      id: 5
+    }
+    info {
+      sid: "PA_XqFvCVXrsjNS"
+      name: "Python Client Bot"
+      identity: "python-client"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 274, in _on_room_event
+    self.emit("participant_connected", rparticipant)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+TypeError: main.<locals>.on_participant_connected() missing 1 required positional argument: 'room'
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AM2xKx6SpSJFtg"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+INFO:root:participant connected: PA_98bgXqKb4zAo python-client
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AM5hnu8hWL6PFF"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /home/a/aslon/livekit-assistant/async_functions.py:67> exception=TypeError('printred() takes 1 positional argument but 2 were given')>
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/async_functions.py", line 97, in receive_audio_frames
+    printing.printred("Time now is:", current_time)
+TypeError: printred() takes 1 positional argument but 2 were given
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AM5hnu8hWL6PFF"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+INFO:root:participant connected: PA_KZGeX25VjXWG python-client
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AM66NjtMBz7o44"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+INFO:root:participant connected: PA_nDG5CNWMeP68 python-client
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMPpM2JtKuzcSU"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:participant connected: PA_fM5dioNcf8vJ python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMyTmACbxTiwLB"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+INFO:root:participant connected: PA_WDqeH3K68NLK python-client
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMFxgKXHojqhGz"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:participant connected: PA_df7cJMZHxpWC python-client
+INFO:root:connection quality changed for python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMnx7KCrXrXNBZ"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMR77xjMXZqBrX"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+INFO:root:participant connected: PA_ReaRSVHHDLSw python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AM7XdNrYWVTnrj"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+INFO:root:participant connected: PA_8LvZLXZEJ8t6 python-client
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AM28PYm2z4pmTZ"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-bot
+INFO:root:participant connected: PA_TdKv2DmM2xBq python-client
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for python-client
+ERROR:root:error running user callback for track_subscribed: room_handle: 3
+track_subscribed {
+  participant_identity: "python-client"
+  track {
+    handle {
+      id: 7
+    }
+    info {
+      sid: "TR_AMQJ2wQUpYUPpb"
+      name: "sinewave"
+      kind: KIND_AUDIO
+      stream_state: STATE_ACTIVE
+      remote: true
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 255, in _listen_task
+    self._on_room_event(event.room_event)
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py", line 325, in _on_room_event
+    self.emit(
+  File "/home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/_event_emitter.py", line 14, in emit
+    callback(*args, **kwargs)
+  File "/home/a/aslon/livekit-assistant/new_server.py", line 136, in on_track_subscribed
+    loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 630, in run_until_complete
+    self._check_running()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 589, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+INFO:faster_whisper:Processing audio with duration 00:10.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for python-client
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<Room._listen_task() running at /home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py:266> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+ERROR:livekit:error putting to queue: Event loop is closed
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<Room._listen_task() running at /home/a/aslon/livekit-assistant/livekit_venv/lib/python3.11/site-packages/livekit/rtc/room.py:266> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+INFO:faster_whisper:Processing audio with duration 00:30.000
+INFO:httpx:HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+ERROR:livekit:livekit::rtc_engine:545:livekit::rtc_engine - failed to reconnect to the livekit room
+INFO:livekit:livekit::room:1027:livekit::room - disconnected from room with reason: UnknownReason
