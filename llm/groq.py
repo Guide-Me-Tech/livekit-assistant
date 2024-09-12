@@ -50,7 +50,7 @@ class GroqLLMHandlers(Groq):
         output_messages = [
             {
                 "role": "system",
-                "content": f"Complete the user sentences",
+                "content": f"Complete the user sentences with 5 sentences.",
             }
         ]
         for message in messages:

@@ -20,7 +20,7 @@ tokenizer = VoiceBpeTokenizer(xtts.downloaded_model_path + "/vocab.json")
 printing.printred(f"Loading default model ---- {xtts.downloaded_model_path}")
 model, gpt_cond_latent, speaker_embedding = xtts.load_model_for_inference(
     model_path=xtts.downloaded_model_path + "/",
-    speaker_audi_paths=["./roma.wav"],
+    speaker_audi_paths=["./audio_new.wav"],
 )
 printing.printred("XTTS Model loaded")
 

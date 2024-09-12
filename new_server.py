@@ -125,15 +125,29 @@ async def main(loop: asyncio.AbstractEventLoop = None):
         if track.kind == rtc.TrackKind.KIND_AUDIO:
             nonlocal audio_stream
             if audio_stream is not None:
-                # only process the first stream received
                 return
 
             print("Subscribed to an Audio Track")
             print("Track info: ", track)
-            # input("Press Enter to continue...")
             audio_stream = rtc.AudioStream(track)
-            task = asyncio.ensure_future(receive_audio_frames(audio_stream))
-            loop.run_until_complete(task)
+
+            # publish a track
+            source = rtc.AudioSource(SAMPLE_RATE, NUM_CHANNELS)
+            track_output = rtc.LocalAudioTrack.create_audio_track("sinewave", source)
+            options = rtc.TrackPublishOptions()
+            options.source = rtc.TrackSource.SOURCE_MICROPHONE
+
+            # Run the async function in the event loop
+            loop_2 = asyncio.get_event_loop()
+            publish_track_task = asyncio.run_coroutine_threadsafe(
+                room.local_participant.publish_track(track, options), loop_2
+            )
+
+            # Start the receive_audio_frames task
+            asyncio.run_coroutine_threadsafe(
+                receive_audio_frames(audio_stream, source), loop_2
+            )
+            # asyncio.ensure_future(publish_frames(source, 440))
 
     print("Particapants: ", room.remote_participants)
     print("Tracks: ", room)

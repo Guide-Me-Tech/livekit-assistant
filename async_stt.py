@@ -10,8 +10,9 @@ from utils import printing
 from utils.timer import timer
 import time
 
+
 printing.printgreen("Printing VAD model")
-vad_model = load_silero_vad()
+vad_model = load_silero_vad(onnx=True)
 printing.printgreen("VAD model loaded")
 printing.printblue("Loading STT model")
 stt_model = WhisperModel(

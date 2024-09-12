@@ -12,6 +12,10 @@ from async_tts import ttswrapper
 from async_stt import process_audio_with_timeout, process_stt, process_vad
 from llm.groq import GroqLLMHandlers
 from datetime import datetime
+from livekit.plugins import silero
+from silero_vad import load_silero_vad, read_audio, get_speech_timestamps
+from utils.timer import timer
+import librosa
 
 load_dotenv()
 SAMPLE_RATE = 48000
@@ -20,53 +24,112 @@ NUM_CHANNELS = 1
 
 async def publish_frames(source: rtc.AudioSource, frequency: int):
     print("Publishing audio frames")
-    # amplitude = 32767  # for 16-bit audio
+    amplitude = 32767  # for 16-bit audio
     samples_per_channel = 480  # 10ms at 48kHz
+    time = np.arange(samples_per_channel) / SAMPLE_RATE
+    total_samples = 0
 
     print("Reading from file go.wav")
 
-    sample_rate, data = wavfile.read("audios/go.wav")
+    sample_rate, data = wavfile.read("audios/go_new.wav")
 
     print("Sample rate: ", sample_rate)
     audio_frame = rtc.AudioFrame.create(SAMPLE_RATE, NUM_CHANNELS, samples_per_channel)
     audio_data = np.frombuffer(audio_frame.data, dtype=np.int16)
+    if sample_rate != SAMPLE_RATE:
+        data = librosa.resample(
+            data.astype(np.float32), orig_sr=sample_rate, target_sr=SAMPLE_RATE
+        )
+
     if len(data.shape) > 1:
         data = data.flatten()
     print("Done Reading from file ")
     audio_data_mv = memoryview(data.astype(np.int16))  # Adjust dtype if necessary
     await source.capture_frame(audio_frame)
-    for i in range(0, len(data), 480):
-        np.copyto(audio_data, audio_data_mv[i : i + 480])
-        print("Sending audio frame: ", +i)
+    print("Number of frames: ", len(data) // 480)
+    for i in range(0, len(data) // 480 - 13000):
+        np.copyto(audio_data, audio_data_mv[i * 480 : (i + 1) * 480])
+        if i % 10000 == 0:
+            print("Sending audio frame: ", +i / 480)
         await source.capture_frame(audio_frame)
+    print("Done sending audio frames")
+
+    return
 
 
-async def send_audio_frames(audio_stream: rtc.AudioStream):
-    # Open a .wav file to read the audio data
-    input_filename = "audio.wav"
-    with wave.open(input_filename, "rb") as wf:
-        # Read the .wav file format parameters
-        num_channels = wf.getnchannels()
-        sample_width = wf.getsampwidth()
-        sample_rate = wf.getframerate()
+async def send_audio_frames(source: rtc.AudioSource, filename: str):
+    print("Publishing audio frames")
+    amplitude = 32767  # for 16-bit audio
+    samples_per_channel = 480  # 10ms at 48kHz
+    time = np.arange(samples_per_channel) / SAMPLE_RATE
+    total_samples = 0
 
-        # Read the raw audio data from the .wav file
-        audio_data = wf.readframes(wf.getnframes())
+    print("Reading from file go.wav")
 
-        # Create an AudioFrame object with the audio data
-        audio_frame = rtc.AudioFrame(
-            data=audio_data,
-            sample_rate=sample_rate,
-            num_channels=num_channels,
-            sample_width=sample_width,
+    sample_rate, data = wavfile.read(filename=filename)
+
+    print("Sample rate: ", sample_rate)
+    audio_frame = rtc.AudioFrame.create(SAMPLE_RATE, NUM_CHANNELS, samples_per_channel)
+    audio_data = np.frombuffer(audio_frame.data, dtype=np.int16)
+    if sample_rate != SAMPLE_RATE:
+        data = librosa.resample(
+            data.astype(np.float32), orig_sr=sample_rate, target_sr=SAMPLE_RATE
         )
 
-        # Send the audio frame to the audio stream
+    if len(data.shape) > 1:
+        data = data.flatten()
+    print("Done Reading from file ")
+    audio_data_mv = memoryview(data.astype(np.int16))  # Adjust dtype if necessary
+    await source.capture_frame(audio_frame)
+    print("Number of frames: ", len(data) // 480)
+    for i in range(0, len(data) // 480 - 13000):
+        np.copyto(audio_data, audio_data_mv[i * 480 : (i + 1) * 480])
+        if i % 10000 == 0:
+            print("Sending audio frame: ", +i / 480)
+        await source.capture_frame(audio_frame)
+    print("Done sending audio frames")
+    return
 
 
-async def receive_audio_frames(audio_stream: rtc.AudioStream):
+vad_model = load_silero_vad(onnx=True)
+
+
+@timer
+def check_vad(filename):
+    """
+
+    Returns True if the speech is stopped and the audio is less than 300ms
+    Returns False if the speech is still ongoing
+
+    """
+    wav = read_audio(filename)
+    full_wav_length = len(wav)
+    # get the speech timestamps
+    speech_timestamps = get_speech_timestamps(
+        model=vad_model,
+        audio=wav,
+        min_silence_duration_ms=300,
+        min_speech_duration_ms=300,
+    )
+    printing.printlightblue("Speech timestamps: ", speech_timestamps)
+    last_speech_timestamp = speech_timestamps[-1]
+    end_of_last_speech = last_speech_timestamp["end"]
+    # the limit of the last speech timestamp
+    # the limit is 300ms
+    limit = 300
+    k = 16
+    if full_wav_length - end_of_last_speech < limit * k:
+        return True
+    return False
+
+
+def Send_Audio(source, audio_data):
+    pass
+
+
+async def receive_audio_frames(audio_stream: rtc.AudioStream, source: rtc.audio_frame):
     # Open a .wav file to write the audio data
-
+    printing.printred("Started Receiving audio frames")
     groq_client = GroqLLMHandlers(api_key=os.getenv("GROQ_API_KEY"))
 
     output_filename = "audio_new.wav"
@@ -90,23 +153,29 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream):
 
             wf.writeframes(buffer.data)
             i += 1
+
             if i % 1000 == 0:
+                if not check_vad(output_filename):
+                    printing.printpink("Speech is still ongoing")
+                    continue
+                print("Speech is not stopped yet")
                 loop_time = time.time()
                 # get current time
                 current_time = datetime.now()
                 printing.printred("Time now is:" + str(current_time))
                 loop_count = 0
-                print("Audio Frame received: ", i)
-                print("Length of buffer: ", len(buffer.data))
+                # print("Audio Frame received: ", i)
+                # print("Length of buffer: ", len(buffer.data))
                 # await process_audio_with_timeout()
                 # logging.info("VAD Processing")
-                print("Processing VAD")
-                process_vad(output_filename)
+                # print("Processing VAD")
+
                 current_time = datetime.now()
                 printing.printred("Time now is:" + str(current_time))
                 # print("Speech timestamps: ", speech_timestamps)
                 print("Processing STT")
                 stt_text = process_stt(output_filename)
+                wf.
                 starting_time = time.time()
                 j = 0
                 current_time = datetime.now()
@@ -136,8 +205,9 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream):
                         # do tts streams for tokens(sentences) generated
                         if len(token) < 5:
                             continue
-                        starting_time = time.time()
+                        # starting_time = time.time()
                         async for audio in ttswrapper(token, "en"):
+
                             if loop_count == 0:
                                 printing.printred(
                                     "#" * 50
@@ -148,20 +218,20 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream):
                                     + "#" * 50
                                     + "\n"
                                 )
-                                current_time = datetime.now()
-                                printing.printred("Time now is:" + str(current_time))
+                                # current_time = datetime.now()
+                                # printing.printred("Time now is:" + str(current_time))
                                 loop_count += 1
                             with open(f"output/output_.wav", "wb") as f:
                                 f.write(audio)
                             with wave.open(f"output/output_.wav", "rb") as rf:
                                 wff.writeframes(rf.readframes(rf.getnframes()))
+                                send_audio_frames(source, "output/output_.wav")
                             j += 1
 
-                    print("Time to do tts: " + str(time.time() - starting_time))
-                    print("Audio TTS done and saved")
+                    # print("Time to do tts: " + str(time.time() - starting_time))
+                    # print("Audio TTS done and saved")
                     # print("Audio: ", audio)
                     # print("To process")
-                    return
 
                 # await process_audio_with_timeout(wav)
     # do tts and send stream
