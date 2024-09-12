@@ -1,10 +1,11 @@
 .venv
 .env
 bin/
-lib'/
+lib64/
 include/
 bin/
 inlcude/
+*venv/
 lib/
 share/
 __pycache__/

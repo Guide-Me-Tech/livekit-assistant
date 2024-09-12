@@ -8,13 +8,8 @@ import numpy as np
 import time
 import torch
 from async_functions import (
-    publish_frames,
-    send_audio_frames,
-    process_audio_with_timeout,
-    process_stt,
     receive_audio_frames,
 )
-from async_tts import ttswrapper
 
 torch.set_num_threads(1)
 load_dotenv()
@@ -50,7 +45,7 @@ async def main(loop: asyncio.AbstractEventLoop = None):
     audio_stream = None
 
     @room.on("participant_connected")
-    def on_participant_connected(participant: rtc.RemoteParticipant, room: rtc.Room):
+    def on_participant_connected(participant: rtc.RemoteParticipant):
         logging.info(
             "participant connected: %s %s", participant.sid, participant.identity
         )
@@ -137,7 +132,8 @@ async def main(loop: asyncio.AbstractEventLoop = None):
             print("Track info: ", track)
             # input("Press Enter to continue...")
             audio_stream = rtc.AudioStream(track)
-            asyncio.ensure_future(receive_audio_frames(audio_stream))
+            task = asyncio.ensure_future(receive_audio_frames(audio_stream))
+            loop.run_until_complete(task)
 
     print("Particapants: ", room.remote_participants)
     print("Tracks: ", room)

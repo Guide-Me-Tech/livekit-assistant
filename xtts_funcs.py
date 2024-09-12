@@ -148,7 +148,7 @@ def ttsStreamEnglishRus(
     for i, chunk in enumerate(chunks):
         if i == 0:
             print(f"Time to first chunck: {time.time() - t0}")
-        print(f"Received chunk {i} of audio length {chunk.shape[-1]}")
+        # print(f"Received chunk {i} of audio length {chunk.shape[-1]}")
         # play each chunk
 
         # torchaudio.save(f" chunk_{i}.wav", chunk.squeeze().unsqueeze(0).cpu(), 24000)

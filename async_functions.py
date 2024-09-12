@@ -1,24 +1,19 @@
+from utils import printing
 import asyncio
 from livekit import rtc
 import wave
 from scipy.io import wavfile
 import numpy as np
-import random
-from faster_whisper import WhisperModel
-import logging
 import time
-from silero_vad import load_silero_vad, read_audio, get_speech_timestamps
 from groq import Groq
 import os
 from dotenv import load_dotenv
 from async_tts import ttswrapper
+from async_stt import process_audio_with_timeout, process_stt, process_vad
+from llm.groq import GroqLLMHandlers
+from datetime import datetime
 
 load_dotenv()
-
-groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-vad_model = load_silero_vad()
-stt_model = WhisperModel("small", device="cpu")
-
 SAMPLE_RATE = 48000
 NUM_CHANNELS = 1
 
@@ -46,42 +41,6 @@ async def publish_frames(source: rtc.AudioSource, frequency: int):
         await source.capture_frame(audio_frame)
 
 
-async def GenerateCompletion(user_input):
-    global groq_client
-    messages = [
-        {"role": "system", "content": "Do whatever user says"},
-        {"role": "user", "content": user_input},
-    ]
-    chat_completion_stream = groq_client.chat.completions.create(
-        messages=messages, model="llama-3.1-8b-instant", stream=True
-    )
-    full_answer = ""
-    temp = ""
-    i = 0
-    for chunk in chat_completion_stream:
-        try:
-            c = chunk.choices[0].delta.content
-            # print(f"\033[94m completion: {c} \033[0m")
-            full_answer += c
-            temp += c
-            if c == "." or c == "!" or c == "?" or c == ":" or c == "\n" or c == "":
-                answer = temp
-                # print("sending form here")
-                temp = ""
-                if len(answer) > 0:
-                    # print()
-                    print(f"\033[94m completion: {answer} \033[0m")
-                    yield answer
-            i += 1
-        except Exception as e:
-            PrintRed("Error occured while streaming: " + str(e))
-            answer = temp
-            if answer != None:
-                yield answer
-            # yield TokenUsage(prompt_tokens=0, completion_tokens=0, total_cost=0)
-            break
-
-
 async def send_audio_frames(audio_stream: rtc.AudioStream):
     # Open a .wav file to read the audio data
     input_filename = "audio.wav"
@@ -105,50 +64,11 @@ async def send_audio_frames(audio_stream: rtc.AudioStream):
         # Send the audio frame to the audio stream
 
 
-def PrintRed(s):
-    print("\033[91m {}\033[00m".format(s))
-
-
-i = 0
-
-
-async def process_stt(wav):
-    # Convert raw audio data to numpy array
-    # Perform STT transcription (simulated with a mock)
-    global i
-    i += 1
-    segments, info = stt_model.transcribe(wav.numpy(), language="uz")
-    print("STT info:", info)
-    some_random_text = "texts/text_" + str(i) + ".txt"
-    full_text = ""
-    with open(some_random_text, "w") as f:
-        print("Writing STT results to file:", some_random_text)
-        for segment in segments:
-            text = segment.text
-            print("Processed audio segment:", text)
-            # logging.info("Processed audio segment: %s", text)
-            f.write(text + "\n")
-            full_text += text + "\n"
-
-    PrintRed("Full text: " + full_text)
-
-
-async def process_audio_with_timeout(wav):
-    # We assume the audio data is continuous, so we slice the first 1 second of data
-    # To get 1 second of data:
-    # 1 sample is int16 (2 bytes), so for mono, we need SAMPLE_RATE samples for 1 second.
-    # For stereo, it's SAMPLE_RATE * 2 samples.
-    # Multiply by 2 because it's 16-bit (2 bytes per sample)
-
-    try:
-        # Use asyncio timeout to ensure the processing stops after 1 second
-        await asyncio.wait_for(process_stt(wav), timeout=1.0)
-    except asyncio.TimeoutError:
-        print("STT processing timed out after 1 second.")
-
-
 async def receive_audio_frames(audio_stream: rtc.AudioStream):
     # Open a .wav file to write the audio data
+
+    groq_client = GroqLLMHandlers(api_key=os.getenv("GROQ_API_KEY"))
+
     output_filename = "audio_new.wav"
     i = 0
     # audio_data = bytearray()
@@ -172,50 +92,76 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream):
             i += 1
             if i % 1000 == 0:
                 loop_time = time.time()
+                # get current time
+                current_time = datetime.now()
+                printing.printred("Time now is:" + str(current_time))
+                loop_count = 0
                 print("Audio Frame received: ", i)
                 print("Length of buffer: ", len(buffer.data))
                 # await process_audio_with_timeout()
                 # logging.info("VAD Processing")
-                print("Reading audio")
-                starting_time = time.time()
-                wav = read_audio("audio_new.wav")
-                # backend (sox, soundfile, or ffmpeg) required!
-                print(type(wav))
-
-                speech_timestamps = get_speech_timestamps(wav, vad_model)
-                PrintRed("Time to process VAD: " + str(time.time() - starting_time))
-                print("Speech timestamps: ", speech_timestamps)
+                print("Processing VAD")
+                process_vad(output_filename)
+                current_time = datetime.now()
+                printing.printred("Time now is:" + str(current_time))
+                # print("Speech timestamps: ", speech_timestamps)
+                print("Processing STT")
+                stt_text = process_stt(output_filename)
                 starting_time = time.time()
                 j = 0
-                async for token in GenerateCompletion(
-                    "Hello, please write python code"
-                ):
-                    if j == 0:
-                        PrintRed(
-                            "Time to get first chunk: "
-                            + str(time.time() - starting_time)
+                current_time = datetime.now()
+                printing.printred("Time now is:" + str(current_time))
+                with wave.open(f"output/full.wav", "wb") as wff:
+                    wff.setnchannels(1)
+                    wff.setframerate(24000)
+                    wff.setsampwidth(2)
+                    for token in groq_client.QueryStreams(
+                        messages=groq_client.ConstructMessages(
+                            context="{'username': 'John', 'debt': '100230'}",
+                            messages=[
+                                {
+                                    "role": "user",
+                                    "content": stt_text,
+                                }
+                            ],
                         )
-                        j += 1
-                    print("Token: ", token)
-                    # print(token)cd
-                # do tts the streams
-                starting_time = time.time()
-                with wave.open(f"output/full.wav", "wb") as wf:
-                    wf.setnchannels(1)
-                    wf.setframerate(24000)
-                    wf.setsampwidth(2)
-                    async for audio in ttswrapper(
-                        "Hello, please write python code", "en"
                     ):
-                        with open(f"output/output_.wav", "wb") as f:
-                            f.write(audio)
-                        with wave.open(f"output/output_.wav", "rb") as rf:
-                            wf.writeframes(rf.readframes(rf.getnframes()))
-                        i += i
+                        if j == 0:
+                            printing.printred(
+                                "Time to get first chunk: "
+                                + str(time.time() - starting_time)
+                            )
+                        print("Token: ", token)
+                        # print(token)cd
+                        # do tts streams for tokens(sentences) generated
+                        if len(token) < 5:
+                            continue
+                        starting_time = time.time()
+                        async for audio in ttswrapper(token, "en"):
+                            if loop_count == 0:
+                                printing.printred(
+                                    "#" * 50
+                                    + "\n"
+                                    + "To get first audio chunk from stt to tts: "
+                                    + str(time.time() - loop_time)
+                                    + "\n"
+                                    + "#" * 50
+                                    + "\n"
+                                )
+                                current_time = datetime.now()
+                                printing.printred("Time now is:" + str(current_time))
+                                loop_count += 1
+                            with open(f"output/output_.wav", "wb") as f:
+                                f.write(audio)
+                            with wave.open(f"output/output_.wav", "rb") as rf:
+                                wff.writeframes(rf.readframes(rf.getnframes()))
+                            j += 1
 
-                print("Time to do tts: " + str(time.time() - starting_time))
-                print("Audio TTS done and saved")
-                # print("Audio: ", audio)
+                    print("Time to do tts: " + str(time.time() - starting_time))
+                    print("Audio TTS done and saved")
+                    # print("Audio: ", audio)
+                    # print("To process")
+                    return
 
                 # await process_audio_with_timeout(wav)
     # do tts and send stream
