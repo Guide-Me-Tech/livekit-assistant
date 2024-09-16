@@ -9,31 +9,38 @@ from silero_vad import load_silero_vad, read_audio, get_speech_timestamps
 from utils import printing
 from utils.timer import timer
 import time
+import sys
 
 
 printing.printgreen("Printing VAD model")
 vad_model = load_silero_vad(onnx=True)
 printing.printgreen("VAD model loaded")
-printing.printblue("Loading STT model")
-stt_model = WhisperModel(
-    "Systran/faster-whisper-small",
-    device="cuda",
-    device_index=[1],
-    compute_type="float16",
-)
-printing.printblue("STT model loaded")
-now = time.time()
+if sys.argv[1] == "load":
+    if sys.argv[2] == "uz":
+        model_name = "aslon1213/whisper-small-uz-with-uzbekvoice-ct2"
+    else:
+        model_name = "Systran/faster-whisper-small"
+
+    printing.printblue(f"Loading STT model - {model_name}")
+    stt_model = WhisperModel(
+        model_name,
+        device="cuda",
+        device_index=[1],
+        compute_type="float16",
+    )
+    printing.printblue("STT model loaded")
+    now = time.time()
 
 
 @timer
-def process_stt(wav):
+def process_stt_with_numpy(wav_arr: np.ndarray):
     # global full_text
     full_text = ""
     # Convert raw audio data to numpy array
     # Perform STT transcription (simulated with a mock)
     # global i
     # i += 1
-    segments, info = stt_model.transcribe("audio_new.wav", language="en")
+    segments, info = stt_model.transcribe(wav_arr, language=sys.argv[2])
     # print("STT info:", info)
     # some_random_text = "texts/text_" + str(i) + ".txt"
     # with open(some_random_text, "w") as f:
@@ -48,8 +55,40 @@ def process_stt(wav):
     return full_text
 
 
-process_stt("audio_new.wav")
-print("Time taken to process STT:", time.time() - now)
+@timer
+def process_stt(filename):
+    # global full_text
+    full_text = ""
+    # Convert raw audio data to numpy array
+    # Perform STT transcription (simulated with a mock)
+    # global i
+    # i += 1
+    segments, info = stt_model.transcribe(filename, language=sys.argv[2])
+    # print("STT info:", info)
+    # some_random_text = "texts/text_" + str(i) + ".txt"
+    # with open(some_random_text, "w") as f:
+    # print("Writing STT results to file:", some_random_text)
+    for segment in segments:
+        text = segment.text
+        # print("Processed audio segment:", text)
+        # logging.info("Processed audio segment: %s", text)
+        # f.write(text + "\n")
+        full_text += text
+    printing.printred("Full text: " + full_text)
+    return full_text
+
+
+try:
+    if sys.argv[2] == "uz":
+        process_stt("untitled.wav")
+    else:
+        process_stt("roma.wav")
+    print("Time taken to process STT:", time.time() - now)
+except Exception as e:
+    # create a the file if it doesn't exist
+    with open("audio_new.wav", "w") as f:
+        f.write("Hello world")
+    print("Error processing STT:", e)
 
 
 @timer

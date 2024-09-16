@@ -7,12 +7,13 @@ from dotenv import load_dotenv
 import numpy as np
 import time
 import torch
-from async_functions import (
-    receive_audio_frames,
-)
+from async_functions import receive_audio_frames, publish_frame_from_queue
+import concurrent.futures
+import threading
 
-torch.set_num_threads(1)
-load_dotenv()
+
+torch.set_num_threads(2)
+load_dotenv(".env.production")
 
 
 SAMPLE_RATE = 48000
@@ -35,9 +36,18 @@ def get_token():
     return token
 
 
-async def main(loop: asyncio.AbstractEventLoop = None):
-    room = rtc.Room(loop=loop)
-    await room.connect(url=os.getenv("LIVEKIT_URL"), token=get_token())
+async def main(loop: asyncio.AbstractEventLoop = None, room: rtc.Room = None):
+    # make room only audio
+    # room = rtc.Room(loop=loop)
+    # # room_options = rtc.RoomOptions(
+    # #     rtc_config=rtc.RtcConfiguration(
+
+    # #     )
+    # # )
+    # await room.connect(
+    #     url=os.getenv("LIVEKIT_URL"),
+    #     token=get_token(),
+    # )
     logging.info("connected to room %s", room.name)
     chat = rtc.ChatManager(room=room)
     logging.info("Chat manager created")
@@ -132,21 +142,26 @@ async def main(loop: asyncio.AbstractEventLoop = None):
             audio_stream = rtc.AudioStream(track)
 
             # publish a track
-            source = rtc.AudioSource(SAMPLE_RATE, NUM_CHANNELS)
-            track_output = rtc.LocalAudioTrack.create_audio_track("sinewave", source)
-            options = rtc.TrackPublishOptions()
-            options.source = rtc.TrackSource.SOURCE_MICROPHONE
+            # source = rtc.AudioSource(SAMPLE_RATE, NUM_CHANNELS)
+            # track_output = rtc.LocalAudioTrack.create_audio_track("sinewave", source)
+            # options = rtc.TrackPublishOptions()
+            # options.source = rtc.TrackSource.SOURCE_MICROPHONE
 
-            # Run the async function in the event loop
-            loop_2 = asyncio.get_event_loop()
-            publish_track_task = asyncio.run_coroutine_threadsafe(
-                room.local_participant.publish_track(track, options), loop_2
-            )
-
+            # # Run the async function in the event loop
+            # loop_2 = asyncio.get_event_loop()
+            # print("Publishing track")
+            # publish_track_task = asyncio.run_coroutine_threadsafe(
+            #     room.local_participant.publish_track(track_output, options), loop_2
+            # )
+            # print("Track published: ", track_output)
+            # Create a thread pool executor
+            # executor = concurrent.futures.ThreadPoolExecutor()
             # Start the receive_audio_frames task
-            asyncio.run_coroutine_threadsafe(
-                receive_audio_frames(audio_stream, source), loop_2
-            )
+            asyncio.ensure_future(receive_audio_frames(audio_stream, source))
+            # asyncio.ensure_future(publish_frame_from_queue(source))
+            # loop_2.run_in_executor(executor, publish_frame_from_queue, source)
+            # open new thread and run publish_frame_from_queue in a separate thread
+
             # asyncio.ensure_future(publish_frames(source, 440))
 
     print("Particapants: ", room.remote_participants)
@@ -172,14 +187,51 @@ async def main(loop: asyncio.AbstractEventLoop = None):
             print(f"Time taken to send message: {ending_time - starting_time}")
 
 
+def run_publish_in_thread(source):
+    """This function will run in a separate thread to handle publish_frame_from_queue."""
+    loop = asyncio.new_event_loop()  # Create a new event loop for this thread
+    asyncio.set_event_loop(loop)  # Set it as the current thread's event loop
+
+    # Now we can safely run the coroutine in this new event loop
+    loop.run_until_complete(publish_frame_from_queue(source))
+    loop.close()
+
+
 if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO,
         handlers=[logging.FileHandler("logs/cccc.log"), logging.StreamHandler()],
     )
     loop = asyncio.get_event_loop()
-    asyncio.ensure_future(main(loop))
+    room = rtc.Room(loop=loop)
+    task = loop.create_task(
+        room.connect(url=os.getenv("LIVEKIT_URL"), token=get_token())
+    )
+    loop.run_until_complete(task)
+    asyncio.ensure_future(main(room=room, loop=loop))
+
+    print("Connected to room")
+
+    # Publish audio track
+    source = rtc.AudioSource(SAMPLE_RATE, NUM_CHANNELS)
+    track_output = rtc.LocalAudioTrack.create_audio_track("sinewave", source)
+    options = rtc.TrackPublishOptions()
+    options.source = rtc.TrackSource.SOURCE_MICROPHONE
+
+    print("Publishing track")
+    publish_track_task = asyncio.run_coroutine_threadsafe(
+        room.local_participant.publish_track(track_output, options), loop
+    )
+    print("Track published: ", track_output)
+
+    # Schedule the main logic
+
+    # Run the publish_frame_from_queue in a separate thread
+    publish_thread = threading.Thread(target=run_publish_in_thread, args=(source,))
+    publish_thread.start()
+
     try:
+        # Run the event loop forever
         loop.run_forever()
     finally:
         loop.close()

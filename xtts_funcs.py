@@ -9,6 +9,7 @@ import io
 import soundfile as sf
 import subprocess
 import os
+import numpy
 
 
 model_name = "tts_models/multilingual/multi-dataset/xtts_v2"
@@ -127,10 +128,7 @@ def ttsFull(
     print("Inference Full...")
     t0 = time.time()
     output = model.inference(text, language, gpt_cond_latent, speaker_embedding)
-    f = io.BytesIO()
-    sf.write(f, output["wav"], 24000, format="WAV", subtype="PCM_16")
-    print("Time to inference: ", time.time() - t0)
-    return f.getvalue()
+    return output["wav"]    
 
 
 def ttsStreamEnglishRus(
@@ -153,12 +151,12 @@ def ttsStreamEnglishRus(
 
         # torchaudio.save(f" chunk_{i}.wav", chunk.squeeze().unsqueeze(0).cpu(), 24000)
         # IPython.display.display(IPython.display.Audio(f"chunk_{i}.wav"))
-        b = io.BytesIO()
+        # b = io.BytesIO()
         j = chunk.squeeze().cpu().numpy()
-        sf.write(b, j, 24000, format="WAV", subtype="PCM_16")
+        # sf.write(b, j, 24000, format="WAV", subtype="PCM_16")
         # wav_chunks.append(j)
         # wav_chunks_bytes.append(b.getvalue())
-        yield b.getvalue()
+        yield j
 
 
 def check_cuda_smi() -> bool:

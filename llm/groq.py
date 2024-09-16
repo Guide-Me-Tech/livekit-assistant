@@ -2,14 +2,16 @@ from groq import Groq
 
 import time
 from utils import printing
+from utils.timer import timer
+import sys
 
 
 class GroqLLMHandlers(Groq):
 
     # self __init__(self, mode)
-
-    def QueryStreams(self, messages, model_selected="llama-3.1-8b-instant"):
-        print("Messages: ", messages)
+    @timer
+    def QueryStreams(self, messages, model_selected="llama-3.1-70b-versatile"):
+        print("Messages: ", messages[1:])
         streams = self.chat.completions.create(
             messages=messages, model=model_selected, stream=True
         )
@@ -41,18 +43,28 @@ class GroqLLMHandlers(Groq):
                 break
 
     def ConstructMessages(self, messages, context="no context sorry"):
+        if sys.argv[2] == "uz":
+            output_messages = [
+                {
+                    "role": "system",
+                    "content": f"You are debt collector assistant from Uzbekistan, try to tell the user that they have a debt and they need to pay it. MAKE THE OUTPUT SHORT AND CONSIZE - 3 sentences maximum.For additonal information about the debt of the user use this CONTEXT -------- {context} ------. HERE OTHER RULES TO FOLLOW: 1. If user says he or she does not want to pay hir or her debt then according to Uzbekista's laws he may be taken to the courts. 2. If user name is Different than in the context then say goodbye to the user and ask the user to notify the correct person. 3. Output numbers in word format EXAMPLE: 15000 - fifteen thousand also format the date in the format of words EXAMPLE: 2022-01-01 - January first two thousand twenty two",
+                }
+            ]
+        else:
+            print("Constructing messages for RUS")
+            output_messages = [
+                {
+                    "role": "system",
+                    "content": f"You are debt collector assistant from Uzbekistan, try to tell the user that they have a debt and they need to pay it. MAKE THE OUTPUT SHORT AND CONSIZE - 3 sentences maximum. For additonal information about the debt of the user use this CONTEXT -------- {context} ------. HERE OTHER RULES TO FOLLOW: 1. If user says he or she does not want to pay hir or her debt then according to Uzbekista's laws he may be taken to the courts. 2. If user name is Different than in the context then say goodbye to the user and ask the user to notify the correct person. 3. Output numbers in word format EXAMPLE: 15000 - fifteen thousand",
+                }
+            ]
+
         # output_messages = [
         #     {
         #         "role": "system",
-        #         "content": f"You are debt collector assistant, try to tell the user that they have a debt and they need to pay it. Make the output short and consize. For additonal information about the debt of the user use this context : {context}",
+        #         "content": f"You are ",
         #     }
         # ]
-        output_messages = [
-            {
-                "role": "system",
-                "content": f"Complete the user sentences with 5 sentences.",
-            }
-        ]
         for message in messages:
             output_messages.append(
                 {

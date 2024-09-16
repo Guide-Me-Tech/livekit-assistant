@@ -3,3 +3,6 @@ inlcude/
 lib/
 lib64/
 *_venv/
+*.env
+.env.production
+/output/output_*.wav
