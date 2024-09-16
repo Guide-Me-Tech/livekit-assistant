@@ -6,3 +6,4 @@ lib64/
 *.env
 .env.production
 /output/output_*.wav
+venv/
