@@ -1,3 +1,0 @@
- as C for the 21st century.
- It's a popular choice for high-performance server-side applications
- and is the language that built tools like Docker, CockroachDB and

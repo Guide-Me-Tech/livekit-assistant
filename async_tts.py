@@ -13,7 +13,6 @@ from TTS.tts.layers.xtts.tokenizer import VoiceBpeTokenizer, split_sentence
 from utils import printing
 from utils.timer import timer
 import sys
-from yandex_tts import synthesize
 
 if sys.argv[1] == "load":
     if sys.argv[2] == "uz":
@@ -26,7 +25,7 @@ if sys.argv[1] == "load":
     printing.printred(f"Loading model -- {model_path}")
     model, gpt_cond_latent, speaker_embedding = xtts.load_model_for_inference(
         model_path=model_path,
-        speaker_audi_paths=["./untitled.wav"],
+        speaker_audi_paths=["audios/untitled.wav"],
     )
     printing.printred("XTTS Model loaded")
 
@@ -44,8 +43,8 @@ def calculate_the_token_length(text, language="en"):
 
 
 async def ttswrapper(text, language, streaming):
-    # if language == "uz":
-    #     output = synthesize(text, "./yandex_output.wav")
+    if language == "uz":
+        language = "ru"
 
     token_length = calculate_the_token_length(text, language)
     chunking_required = False

@@ -17,15 +17,21 @@ vad_model = load_silero_vad(onnx=True)
 printing.printgreen("VAD model loaded")
 if sys.argv[1] == "load":
     if sys.argv[2] == "uz":
-        model_name = "aslon1213/whisper-small-uz-with-uzbekvoice-ct2"
+        model_name = "model_uz"
     else:
         model_name = "Systran/faster-whisper-small"
 
     printing.printblue(f"Loading STT model - {model_name}")
+    if sys.argv[5] == "1":
+        index_num = 1
+    elif sys.argv[5] == "2":
+        index_num = 3
+    else:
+        index_num = 5
     stt_model = WhisperModel(
         model_name,
         device="cuda",
-        device_index=[1],
+        device_index=[index_num],
         compute_type="float16",
     )
     printing.printblue("STT model loaded")
@@ -80,13 +86,13 @@ def process_stt(filename):
 
 try:
     if sys.argv[2] == "uz":
-        process_stt("untitled.wav")
+        process_stt("audios/untitled.wav")
     else:
         process_stt("roma.wav")
     print("Time taken to process STT:", time.time() - now)
 except Exception as e:
     # create a the file if it doesn't exist
-    with open("audio_new.wav", "w") as f:
+    with open("audios/audio_new.wav", "w") as f:
         f.write("Hello world")
     print("Error processing STT:", e)
 

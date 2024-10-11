@@ -10,7 +10,7 @@ import soundfile as sf
 import subprocess
 import os
 import numpy
-
+import sys
 
 model_name = "tts_models/multilingual/multi-dataset/xtts_v2"
 
@@ -69,10 +69,7 @@ def get_device():
 
 
 def load_model_for_inference(
-    model_path,
-    speaker_audi_paths=["female.wav"],
-    use_deepspeed=False,
-    device_id: int = 0,
+    model_path, speaker_audi_paths=["audios/female.wav"], use_deepspeed=False
 ):
     print("Loading model...")
     config = XttsConfig()
@@ -81,7 +78,13 @@ def load_model_for_inference(
     model.load_checkpoint(
         config, checkpoint_dir=model_path, use_deepspeed=use_deepspeed
     )
-    model.cuda(device=device_id)
+    if sys.argv[5] == "1":
+        index_num = 0
+    elif sys.argv[5] == "2":
+        index_num = 2
+    else:
+        index_num = 4
+    model.cuda(device=index_num)
     print("Computing speaker latents...")
     gpt_cond_latent, speaker_embedding = model.get_conditioning_latents(
         audio_path=speaker_audi_paths
@@ -131,7 +134,7 @@ def ttsFull(
     print("Inference Full...")
     t0 = time.time()
     output = model.inference(text, language, gpt_cond_latent, speaker_embedding)
-    return output["wav"]    
+    return output["wav"]
 
 
 def ttsStreamEnglishRus(

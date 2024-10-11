@@ -23,6 +23,7 @@ import librosa
 from scipy.signal import resample
 import threading
 import sys
+from data import user_data, get_medx_user_data
 
 #
 #
@@ -39,8 +40,10 @@ NUM_CHANNELS = 1
 import queue
 
 audio_frames_que = queue.Queue(maxsize=100)
+video_frames_que = queue.Queue(maxsize=100)
 # audio_frames_que = asyncio.Queue(10)
-tokens_que = asyncio.Queue(10)
+tokens_que = asyncio.Queue(100)
+recent_frame = None
 
 
 async def publish_frame_from_queue(
@@ -69,40 +72,6 @@ async def publish_frame_from_queue(
             continue
         printing.printyellow(f"GOT AUDIO DATA FROM QUEUE - {len(data)}")
         printing.printyellow(f"File number: {file_num}")
-        # if file_num != 0:
-        #     # time = np.arange(samples_per_channel) / SAMPLE_RATE
-        #     # total_samples = 0
-        #     sample_rate = 24000
-        #     print("Sample rate: ", sample_rate)
-        #     # audio_frame = rtc.AudioFrame.create(
-        #     #     SAMPLE_RATE, NUM_CHANNELS, samples_per_channel
-        #     # audio_data = np.frombuffer(audio_frame.data, dtype=np.int16)
-        #     resampled_data = librosa.resample(
-        #         data, orig_sr=24000, target_sr=SAMPLE_RATE
-        #     )
-        #     if resampled_data.dtype == np.float32 or resampled_data.dtype == np.float64:
-        #         max_val = np.max(
-        #             np.abs(resampled_data)
-        #         )  # Get the maximum absolute value
-        #         if max_val > 0:
-        #             resampled_data = resampled_data / max_val  # Normalize to [-1, 1]
-        #         resample_16k = np.int16(
-        #             resampled_data * amplitude
-        #         )  # Convert to 16-bit PCM
-        #     with wave.open(f"output/output_{file_num}.wav", "wb") as f:
-        #         f.setnchannels(1)
-        #         f.setsampwidth(2)
-        #         f.setframerate(48000)
-        #         f.writeframes(resample_16k.tobytes())
-        #         file_num += 1
-        #     # if len(data.shape) > 1:
-        #     #     resample_16k = resample_16k.flatten()
-        #     audio_data_mv = memoryview(resample_16k.astype(np.int16))
-        # else:
-        #     resample_16k = data
-        #     # if len(data.shape) > 1:
-        #     #     resample_16k = resample_16k.flatten()
-        #     audio_data_mv = memoryview(resample_16k.astype(np.int16))
         for i in range(0, (len(data) // samples_per_channel)):
             np.copyto(
                 audio_data,
@@ -113,20 +82,42 @@ async def publish_frame_from_queue(
             #     break
         file_num += 1
 
-        # if new_speech_from_user_condition:
-        #     # get all the remaining data
-        #     for i in range(audio_frames_que.qsize()):
-        #         audio_frames_que.get_nowait()
-        # print("Send audio frame")
-        # if not audio_frames_que.empty():
-        #     np.copyto(audio_data, audio_frames_que.get())
-        #     await source.capture_frame(audio_frame)
-        #     print("Sending audio frame")
-        # else:
-        #     await asyncio.sleep(0.1)
-        #     continue
-        # print("No audio data in queue")
-        # await asyncio.sleep(0.1)
+
+WIDTH, HEIGHT = 1280, 720
+
+import colorsys
+
+
+async def publish_frame_from_queue_video(
+    source: rtc.VideoSource,
+):
+    global WIDTH, HEIGHT
+    argb_frame = bytearray(WIDTH * HEIGHT * 4)
+    arr = np.frombuffer(argb_frame, dtype=np.uint8)
+
+    framerate = 1 / 30
+    hue = 0.0
+
+    while True:
+        start_time = asyncio.get_event_loop().time()
+
+        rgb = colorsys.hsv_to_rgb(hue, 1.0, 1.0)
+        rgb = [(x * 255) for x in rgb]  # type: ignore
+
+        argb_color = np.array(rgb + [255], dtype=np.uint8)
+        arr.flat[::4] = argb_color[0]
+        arr.flat[1::4] = argb_color[1]
+        arr.flat[2::4] = argb_color[2]
+        arr.flat[3::4] = argb_color[3]
+
+        frame = rtc.VideoFrame(WIDTH, HEIGHT, rtc.VideoBufferType.RGBA, argb_frame)
+        source.capture_frame(frame)
+        hue = (hue + framerate / 3) % 1.0
+
+        code_duration = asyncio.get_event_loop().time() - start_time
+        await asyncio.sleep(1 / 30 - code_duration)
+
+    # send video
 
 
 async def send_audio_frames(
@@ -143,7 +134,7 @@ async def send_audio_frames(
 
         token, streaming = await tokens_que.get()
         printing.printred(f"GOT TOKEN FROM QUEUE: {token} ----- STREAMING: {streaming}")
-        async for data in ttswrapper(token, "ru", streaming):
+        async for data in ttswrapper(token, sys.argv[2], streaming):
 
             # await audio_frames_que.put(data)
             printing.printyellow(f"PUT DATA TO QUEUE - {len(data)}")
@@ -200,14 +191,14 @@ async def send_audio_frames(
 vad_model = load_silero_vad(onnx=True)
 
 
-@timer
+# @timer
 def check_vad(filename):
     """
 
     Returns True if the speech is stopped and the audio is less than 300ms
     Returns False if the speech is still ongoing
     """
-    print("Doing vad")
+    # print("Doing vad")
     limit = 500
     try:
         wav = read_audio(filename)
@@ -220,12 +211,10 @@ def check_vad(filename):
             min_speech_duration_ms=300,
         )
 
-        printing.printlightblue("Speech timestamps: " + str(speech_timestamps))
+        # printing.printlightblue("Speech timestamps: " + str(speech_timestamps))
         if len(speech_timestamps) == 0:
             # no speech detected so keep listening
             raise Exception("No speech detected so delete the file")
-
-            return True, ""
         last_speech_timestamp = speech_timestamps[-1]
         printing.printlightblue("Full wav length: " + str(full_wav_length))
         printing.printlightblue(
@@ -233,7 +222,7 @@ def check_vad(filename):
         )
         end_of_last_speech = last_speech_timestamp["end"]
     except Exception as e:
-        print("Error: ", e)
+        # print("Error: ", e)
         return True, ""
     # the limit of the last speech timestamp
     # the limit is 300ms
@@ -255,8 +244,9 @@ async def SendOkeyAudio():
 
     # print("Reading from file")
     # sample_rate, data = wavfile.read("audios/go_new.wav")
-    sample_rate, data = wavfile.read("okey_48k.wav")
+    sample_rate, data = wavfile.read("audios/okey_48k.wav")
 
+    # RESAMPLING PROCESS FOR 48000 HZ with int16 data type
     # data = data[6500000:]
     # print("Sample rate: ", sample_rate)
     # audio_frame = rtc.AudioFrame.create(
@@ -291,11 +281,11 @@ import os
 
 # Fetch the access token using gcloud command
 # access_token = os.system("gclo")
-access_token = "ya29.a0AcM612z36tcFo9swVg1R8KEFidhq9fVKNhOp4zr-ev0H3L8MFj0vsgkGfqEq7znzdvjQW2nJ4fVWUrEatF-eccmCdJuiihx6PhtKsX0sCxJ-O8iuBQ0FTy5qgpWk7YpPoBD0dalORhAt3dECfb0vudvZh7iOOQoEgGdbjN-miwIg8AaCgYKAa4SARMSFQHGX2MiITECjNJyx4AEl21gMyQ9XA0181"
+access_token = os.getenv("GOOGLE_ACCESS_TOKEN")
 # Define the headers
 headers = {
     "Authorization": f"Bearer {access_token}",
-    "x-goog-user-project": "chrome-axe-396907",
+    "x-goog-user-project": os.getenv("GOOGLE_PROJECT_ID"),
     "Content-Type": "application/json; charset=utf-8",
 }
 
@@ -315,7 +305,7 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream, source: rtc.audio_
     printing.printred("Started Receiving audio frames")
     groq_client = GroqLLMHandlers(api_key=os.getenv("GROQ_API_KEY"))
 
-    output_filename = "audio_new.wav"
+    output_filename = "audios/audio_new.wav"
 
     # audio_data = bytearray()
     all_buffer = bytearray()
@@ -323,7 +313,15 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream, source: rtc.audio_
     # send audio frames first
     # await send_audio_frames(source, "output/full.wav")
     # return
-
+    llm_data = ""
+    if sys.argv[5] == "1":
+        index_num = 0
+    elif sys.argv[5] == "2":
+        index_num = 1
+    else:
+        index_num = 2
+    llm_data = str(get_medx_user_data(index_num))
+    ##### to to tts from tokens queue and send to audio frames queue
     asyncio.ensure_future(send_audio_frames(source))
     should_break = False
 
@@ -334,10 +332,10 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream, source: rtc.audio_
             continue
         print("Inside loop")
         try:
-            os.remove("audio_new.wav")
+            os.remove("audios/audio_new.wav")
         except Exception as e:
             print("Error: ", e)
-            with open("audio_new.wav", "w") as f:
+            with open("audios/audio_new.wav", "w") as f:
                 f.write("Hello world")
             continue
         # wait queue to be empty
@@ -365,14 +363,14 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream, source: rtc.audio_
                 if sending_audio:
                     break
 
-                if i > 0 and i % 30 == 0:
+                if i > 0 and i % 50 == 0:
                     loop_time = time.time()
                     try:
                         speech_ongoing, full_text = check_vad(output_filename)
                         if speech_ongoing:
                             # printing.printpink("Speech is still ongoing")
                             continue
-                        # printing.printpink("Speech is stopped")
+                        printing.printpink("Speech is stopped")
                         should_break = True
                         new_speech_from_user_condition = True
                     except Exception as e:
@@ -391,7 +389,8 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream, source: rtc.audio_
                     # current_time = datetime.now()
                     # printing.printred("Time now is:" + str(current_time))
 
-                    stt_text = await translate_text(full_text, "en")
+                    # stt_text = await translate_text(full_text, "en")
+                    stt_text = full_text
                     messages.append(
                         {
                             "role": "user",
@@ -400,62 +399,17 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream, source: rtc.audio_
                     )
                     starting_time = time.time()
                     j = 0
-                    # current_time = datetime.now()
-                    # printing.printred("Time now is:" + str(current_time))
-                    # with wave.open(f"output/full.wav", "wb") as wff:
-                    # wff.setnchannels(1)
-                    # wff.setframerate(24000)
                     # wff.setsampwidth(2)
                     streaming = True
                     llm_text_full = ""
-                    for token in groq_client.QueryStreams(
+
+                    # LLM USAGE --- GROQ
+                    for token in groq_client.QueryVision(
                         messages=groq_client.ConstructMessages(
-                            context="""{
-                            "user_id": "12345",
-                            "name": "Aslon",
-                            "phone": "+777 10 10",
-                            "email": "aslon.hamidov@example.com",
-                            "debt_info": {
-                                "total_debt": 150000.00,
-                                "currency": "SUMM",
-                                "loan_type": "Personal Loan",
-                                "interest_rate": 5.75,
-                                "monthly_payment": 50000.00,
-                                "next_payment_due_date": "2024-10-01",
-                                "overdue_payments": 2,
-                                "last_payment_date": "2024-08-01",
-                                "last_payment_amount": 500.00,
-                                "penalties": {
-                                    "late_fee": 50.00,
-                                    "total_penalties": 100.00
-                                },
-                                "remaining_balance": 14500.00,
-                                "loan_start_date": "2022-01-01",
-                                "loan_due_date": "2027-01-01"
-                            },
-                            "status": "Delinquent",
-                            "contact_history": [
-                                {
-                                    "date": "2024-08-15",
-                                    "method": "Phone",
-                                    "result": "No Answer"
-                                },
-                                {
-                                    "date": "2024-07-25",
-                                    "method": "Email",
-                                    "result": "Reminder Sent"
-                                }
-                            ],
-                            "bank_details": {
-                                "bank_name": "BRB bank",
-                                "branch_name": "Main Branch",
-                                "branch_code": "001",
-                                "contact_number": "+888 55 44"
-                            }
-                            }
-                        """,
+                            context=llm_data,
                             messages=messages,
-                        )
+                        ),
+                        latest_image="frames/temp_frame.png",
                     ):
                         if j == 0:
                             printing.printred(
@@ -471,40 +425,15 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream, source: rtc.audio_
                             continue
                         llm_text_full += token
                         # trabslation
-                        translated_text = await translate_text(token, sys.argv[2])
+                        # translated_text = await translate_text(token, sys.argv[2])
+                        translated_text = token
                         translated_text = translated_text.replace("&#39;", "'")
                         await tokens_que.put([translated_text, streaming])
                         printing.printred(
                             f"PUT TOKEN TO QUEUE: {token} ------ STREAMING: {streaming}"
                         )
                         j += 1
-                        # print(token)cd
-                        # do tts streams for tokens(sentences) generated
-
-                        # starting_time = time.time()
-                        # await send_audio_frames(source, token, streaming=streaming)
                         streaming = True
-                        # async for audio_numpy in ttswrapper(token, "en"):
-
-                        #     if loop_count == 0:
-                        #         printing.printred(
-                        #             "#" * 50
-                        #             + "\n"
-                        #             + "To get first audio chunk from stt to tts: "
-                        #             + str(time.time() - loop_time)
-                        #             + "\n"
-                        #             + "#" * 50
-                        #             + "\n"
-                        #         )
-                        #         # current_time = datetime.now()
-                        #         # printing.printred("Time now is:" + str(current_time))
-                        #         loop_count += 1
-                        #         # with open(f"output/output_.wav", "wb") as f:
-                        #         #     f.write(audio_numpy)
-                        #         # with wave.open(f"output/output_.wav", "rb") as rf:
-                        #         #     wff.writeframes(rf.readframes(rf.getnframes()))
-
-                        #     j += 1
                     messages.append(
                         {
                             "role": "assistant",
@@ -518,11 +447,139 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream, source: rtc.audio_
                     # time.sleep(5)
                     break
                 # return
-                # print("Time to do tts: " + str(time.time() - starting_time))
-                # print("Audio TTS done and saved")
-                # print("Audio: ", audio)
-                # print("To process")
 
-                # await process_audio_with_timeout(wav)
-        # do tts and send stream
-        # read audios/go.wav and send it to the room
+
+import mediapipe as mp
+from mediapipe import solutions
+from mediapipe.framework.formats import landmark_pb2
+import cv2
+
+
+async def receive_video_frames(video_stream: rtc.VideoStream):
+    frame_counter = 0  # Counter to keep track of frame numbers
+
+    async for frame in video_stream:
+        frame_event = frame.frame
+
+        # Extract the frame dimensions and buffer
+        actual_width = frame_event.width
+        actual_height = frame_event.height
+        buffer = frame_event.data
+        buffer_size = len(buffer)
+
+        # Expected size for RGB format
+        expected_size = actual_width * actual_height * 3
+        compressed_expected_size = expected_size // 2  # Assuming YUV420 compression
+
+        # Handle compressed format (e.g., YUV420)
+        if buffer_size == compressed_expected_size:
+            # print("Detected compressed format, converting to BGR...")
+            # Convert YUV to BGR to address green tint
+            yuv_frame = np.frombuffer(buffer, dtype=np.uint8).reshape(
+                (int(actual_height * 1.5), actual_width)
+            )
+            frame_converted = cv2.cvtColor(yuv_frame, cv2.COLOR_YUV2BGR_I420)
+
+        # Handle uncompressed RGB format
+        elif buffer_size == expected_size:
+            frame_converted = np.frombuffer(buffer, dtype=np.uint8).reshape(
+                (actual_height, actual_width, 3)
+            )
+
+        else:
+            print(
+                f"Error: Buffer size {buffer_size} does not match expected sizes. Skipping frame."
+            )
+            continue
+
+        # Optional: Resize if needed
+        # frame_converted = cv2.resize(frame_converted, (640, 480))  # Resize if required
+
+        # Save the frame as an image file
+        recent_frame = frame_converted
+        output_filename = f"frames/temp_frame.png"  # Saves frames as PNG files with zero-padded numbering
+        cv2.imwrite(output_filename, frame_converted)
+        # print(f"Saved frame {frame_counter} as {output_filename}")
+
+        # frame_counter += 1  # Increment the frame counter
+
+    print("Finished saving frames.")
+
+
+# async def receive_video_frames(video_stream: rtc.VideoStream):
+#     # save
+#     # save to file
+#     # print("Started Receiving video frames")
+#     # # Set up video writer parameters
+#     # output_filename = "output_video.mp4"  # Output file name
+#     # frame_width = 960
+#     # frame_height = 540
+#     # fps = 60  # Frames per second
+#     # # Define codec and create VideoWriter object
+#     # fourcc = cv2.VideoWriter_fourcc(*"mp4v")  # Codec for MP4 files
+#     # out = cv2.VideoWriter(output_filename, fourcc, fps, (frame_width, frame_height))
+#     # async for frame_event in video_stream:
+
+#     #     buffer = frame_event.frame
+#     #     print("Frame width: ", buffer.width)
+#     #     print("Frame height: ", buffer.height)
+#     #     arr = np.frombuffer(buffer.data, dtype=np.uint8)
+#     #     arr = arr.reshape((buffer.height, buffer.width, 3))
+#     #     mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=arr)
+#     #     arr = cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
+#     #     cv2.imshow("Frame", arr)
+
+#     output_filename = "output_video.mp4"
+#     frame_width, frame_height = 640, 480  # Frame dimensions
+#     fps = 60  # Frames per second
+
+#     # Define codec and create VideoWriter object
+#     fourcc = cv2.VideoWriter_fourcc(*"mp4v")  # Codec for MP4 files
+#     out = cv2.VideoWriter(output_filename, fourcc, fps, (frame_width, frame_height))
+
+#     async for frame in video_stream:
+#         frame_event = frame.frame
+
+#         # Get the actual width, height, and buffer size of the frame
+#         actual_width = frame_event.width
+#         actual_height = frame_event.height
+#         buffer = frame_event.data
+#         buffer_size = len(buffer)
+
+#         # Check if the buffer size matches a known format; double the expected size for compressed formats
+#         expected_size = actual_width * actual_height * 3  # For RGB
+#         compressed_expected_size = (
+#             expected_size // 2
+#         )  # Assuming a common compression (like YUV420)
+
+#         # Check if buffer matches the expected compressed size
+#         if buffer_size != expected_size and buffer_size == compressed_expected_size:
+#             # Convert the buffer to YUV format
+#             print("Detected compressed format, converting...")
+#             yuv_frame = np.frombuffer(buffer, dtype=np.uint8).reshape(
+#                 (int(actual_height * 1.5), actual_width)
+#             )
+#             frame_converted = cv2.cvtColor(yuv_frame, cv2.COLOR_YUV2RGB_I420)
+
+#         elif buffer_size == expected_size:
+#             # For uncompressed RGB data
+#             frame_converted = np.frombuffer(buffer, dtype=np.uint8).reshape(
+#                 (actual_height, actual_width, 3)
+#             )
+
+#         else:
+#             print(
+#                 f"Error: Buffer size {buffer_size} does not match expected sizes. Skipping frame."
+#             )
+#             continue
+
+#         # Optional: Resize frame to match the VideoWriter's expected dimensions
+#         if (actual_width, actual_height) != (frame_width, frame_height):
+#             frame_converted = cv2.resize(frame_converted, (frame_width, frame_height))
+
+#         # Write the frame to the video file
+#         out.write(frame_converted)
+
+#     # Release the VideoWriter when done
+#     out.release()
+#     print("Video saved successfully!")
