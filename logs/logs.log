@@ -1,0 +1,444 @@
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:148> exception=AssertionError('The list of available backends is empty, please install backend manually.                                     \n Recommendations: \n \tSox (UNIX OS) \n \tSoundfile (Windows OS, UNIX OS) \n \tffmpeg (Windows OS, UNIX OS)')>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 173, in receive_audio_frames
+    await do_vad()
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 183, in do_vad
+    wav = read_audio("audio.wav")  # backend (sox, soundfile, or ffmpeg) required!
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aslonkhamidov/.cache/torch/hub/snakers4_silero-vad_master/src/silero_vad/utils_vad.py", line 137, in read_audio
+    assert len(list_backends) > 0, 'The list of available backends is empty, please install backend manually. \
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: The list of available backends is empty, please install backend manually.                                     
+ Recommendations: 
+ 	Sox (UNIX OS) 
+ 	Soundfile (Windows OS, UNIX OS) 
+ 	ffmpeg (Windows OS, UNIX OS)
+ERROR:livekit:error putting to queue: Event loop is closed
+ERROR:livekit:error putting to queue: Event loop is closed
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:root:VAD Processing
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:148> exception=AssertionError('The list of available backends is empty, please install backend manually.                                     \n Recommendations: \n \tSox (UNIX OS) \n \tSoundfile (Windows OS, UNIX OS) \n \tffmpeg (Windows OS, UNIX OS)')>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 173, in receive_audio_frames
+    await do_vad()
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 183, in do_vad
+    wav = read_audio("audio.wav")  # backend (sox, soundfile, or ffmpeg) required!
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aslonkhamidov/.cache/torch/hub/snakers4_silero-vad_master/src/silero_vad/utils_vad.py", line 137, in read_audio
+    assert len(list_backends) > 0, 'The list of available backends is empty, please install backend manually. \
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: The list of available backends is empty, please install backend manually.                                     
+ Recommendations: 
+ 	Sox (UNIX OS) 
+ 	Soundfile (Windows OS, UNIX OS) 
+ 	ffmpeg (Windows OS, UNIX OS)
+ERROR:livekit:error putting to queue: Event loop is closed
+ERROR:livekit:error putting to queue: Event loop is closed
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:root:VAD Processing
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:148> exception=AssertionError('The list of available backends is empty, please install backend manually.                                     \n Recommendations: \n \tSox (UNIX OS) \n \tSoundfile (Windows OS, UNIX OS) \n \tffmpeg (Windows OS, UNIX OS)')>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 173, in receive_audio_frames
+    do_vad()
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 183, in do_vad
+    wav = read_audio("audio.wav")  # backend (sox, soundfile, or ffmpeg) required!
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aslonkhamidov/.cache/torch/hub/snakers4_silero-vad_master/src/silero_vad/utils_vad.py", line 137, in read_audio
+    assert len(list_backends) > 0, 'The list of available backends is empty, please install backend manually. \
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: The list of available backends is empty, please install backend manually.                                     
+ Recommendations: 
+ 	Sox (UNIX OS) 
+ 	Soundfile (Windows OS, UNIX OS) 
+ 	ffmpeg (Windows OS, UNIX OS)
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:root:VAD Processing
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:148> exception=AssertionError('The list of available backends is empty, please install backend manually.                                     \n Recommendations: \n \tSox (UNIX OS) \n \tSoundfile (Windows OS, UNIX OS) \n \tffmpeg (Windows OS, UNIX OS)')>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 175, in receive_audio_frames
+    wav = read_audio(
+          ^^^^^^^^^^^
+  File "/Users/aslonkhamidov/.cache/torch/hub/snakers4_silero-vad_master/src/silero_vad/utils_vad.py", line 137, in read_audio
+    assert len(list_backends) > 0, 'The list of available backends is empty, please install backend manually. \
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: The list of available backends is empty, please install backend manually.                                     
+ Recommendations: 
+ 	Sox (UNIX OS) 
+ 	Soundfile (Windows OS, UNIX OS) 
+ 	ffmpeg (Windows OS, UNIX OS)
+ERROR:livekit:error putting to queue: Event loop is closed
+ERROR:livekit:error putting to queue: Event loop is closed
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:root:VAD Processing
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<receive_audio_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:148> exception=AssertionError('The list of available backends is empty, please install backend manually.                                     \n Recommendations: \n \tSox (UNIX OS) \n \tSoundfile (Windows OS, UNIX OS) \n \tffmpeg (Windows OS, UNIX OS)')>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 176, in receive_audio_frames
+    wav = read_audio(
+          ^^^^^^^^^^^
+  File "/Users/aslonkhamidov/.cache/torch/hub/snakers4_silero-vad_master/src/silero_vad/utils_vad.py", line 137, in read_audio
+    assert len(list_backends) > 0, 'The list of available backends is empty, please install backend manually. \
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: The list of available backends is empty, please install backend manually.                                     
+ Recommendations: 
+ 	Sox (UNIX OS) 
+ 	Soundfile (Windows OS, UNIX OS) 
+ 	ffmpeg (Windows OS, UNIX OS)
+ERROR:livekit:error putting to queue: Event loop is closed
+ERROR:livekit:error putting to queue: Event loop is closed
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+ERROR:livekit:error putting to queue: Event loop is closed
+ERROR:livekit:error putting to queue: Event loop is closed
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:published track TR_ASjM5jfgpLpeo
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:158> exception=AttributeError("property 'data' of 'AudioFrame' object has no setter")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 167, in publish_frames
+    audio_frame.data = wf.readframes(wf.getnframes())
+    ^^^^^^^^^^^^^^^^
+AttributeError: property 'data' of 'AudioFrame' object has no setter
+INFO:root:track muted: PA_nwHF6z8FZPbA
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:root:received data from secod person: b'{"id":"3f3cb7b0-664a-4bb9-9d38-6dc6f5b21933","message":"hello","timestamp":1725956040011}'
+ERROR:livekit:error putting to queue: Event loop is closed
+ERROR:livekit:error putting to queue: Event loop is closed
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:published track TR_Atsqffb5qN98j
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:158> exception=AttributeError("property 'data' of 'AudioFrame' object has no setter")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 167, in publish_frames
+    audio_frame.data = wf.readframes(wf.getnframes())
+    ^^^^^^^^^^^^^^^^
+AttributeError: property 'data' of 'AudioFrame' object has no setter
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:158> exception=AttributeError("property 'data' of 'AudioFrame' object has no setter")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 167, in publish_frames
+    audio_frame.data = wf.readframes(wf.getnframes())
+    ^^^^^^^^^^^^^^^^
+AttributeError: property 'data' of 'AudioFrame' object has no setter
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:158> exception=AttributeError("property 'data' of 'AudioFrame' object has no setter")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 167, in publish_frames
+    audio_frame.data = wf.readframes(wf.getnframes())
+    ^^^^^^^^^^^^^^^^
+AttributeError: property 'data' of 'AudioFrame' object has no setter
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=ValueError('could not broadcast input array from shape (6577152,2) into shape (480,)')>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 170, in publish_frames
+    np.copyto(audio_data, data)
+ValueError: could not broadcast input array from shape (6577152,2) into shape (480,)
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+ERROR:livekit:error putting to queue: Event loop is closed
+ERROR:livekit:error putting to queue: Event loop is closed
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=ValueError('could not broadcast input array from shape (480,2) into shape (480,)')>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 178, in publish_frames
+    np.copyto(audio_data, data[i * 480 : (i + 1) * 480])
+ValueError: could not broadcast input array from shape (480,2) into shape (480,)
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=ValueError('could not broadcast input array from shape (480,2) into shape (480,)')>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 180, in publish_frames
+    np.copyto(audio_data, data[i * 480 : (i + 1) * 480])
+ValueError: could not broadcast input array from shape (480,2) into shape (480,)
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=AttributeError("property 'data' of 'AudioFrame' object has no setter")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 183, in publish_frames
+    audio_frame.data = audio_data_mv
+    ^^^^^^^^^^^^^^^^
+AttributeError: property 'data' of 'AudioFrame' object has no setter
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=AttributeError("property 'data' of 'AudioFrame' object has no setter")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 183, in publish_frames
+    audio_frame.data = audio_data_mv
+    ^^^^^^^^^^^^^^^^
+AttributeError: property 'data' of 'AudioFrame' object has no setter
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=AttributeError("property 'data' of 'AudioFrame' object has no setter")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 183, in publish_frames
+    audio_frame.data = audio_data_mv
+    ^^^^^^^^^^^^^^^^
+AttributeError: property 'data' of 'AudioFrame' object has no setter
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=AttributeError("property 'data' of 'AudioFrame' object has no setter")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 184, in publish_frames
+    audio_frame.data = audio_data_mv
+    ^^^^^^^^^^^^^^^^
+AttributeError: property 'data' of 'AudioFrame' object has no setter
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=ValueError('could not broadcast input array from shape (384,) into shape (480,)')>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 185, in publish_frames
+    np.copyto(audio_data, audio_data_mv[i : i + 480])
+ValueError: could not broadcast input array from shape (384,) into shape (480,)
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=UnboundLocalError("cannot access local variable 'audio_frame' where it is not associated with a value")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 167, in publish_frames
+    audio_data = np.frombuffer(audio_frame.data, dtype=np.int16)
+                               ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'audio_frame' where it is not associated with a value
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=UnboundLocalError("cannot access local variable 'audio_frame' where it is not associated with a value")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 168, in publish_frames
+    audio_data = np.frombuffer(audio_frame.data, dtype=np.int16)
+                               ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'audio_frame' where it is not associated with a value
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
+INFO:livekit:livekit_ffi::server:132:livekit_ffi::server - initializing ffi server v0.9.1
+INFO:livekit:livekit_ffi::cabi:27:livekit_ffi::cabi - initializing ffi server v0.9.1
+INFO:livekit:livekit_api::signal_client::signal_stream:96:livekit_api::signal_client::signal_stream - connecting to wss://consultant-ai-weia2b76.livekit.cloud/rtc?sdk=rust&protocol=15&auto_subscribe=1&adaptive_stream=0&access_token=...
+INFO:root:connected to room my-room
+INFO:root:Chat manager created
+INFO:root:connection state changed: 1
+INFO:root:connection quality changed for secod person
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<publish_frames() done, defined at /Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py:161> exception=Exception("an RtcError occured: InvalidState - sample_rate and num_channels don't match")>
+Traceback (most recent call last):
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/new_server.py", line 204, in publish_frames
+    await source.capture_frame(audio_frame)
+  File "/Users/aslonkhamidov/Desktop/code/consultant_ai/livekit-assistant/lib/python3.11/site-packages/livekit/rtc/audio_source.py", line 68, in capture_frame
+    raise Exception(cb.capture_audio_frame.error)
+Exception: an RtcError occured: InvalidState - sample_rate and num_channels don't match
+INFO:root:connection quality changed for python-bot
+INFO:root:connection quality changed for secod person
