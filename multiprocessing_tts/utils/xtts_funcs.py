@@ -75,7 +75,7 @@ def load_model_for_inference(
 ):
     print("Loading model...")
     config = XttsConfig()
-    config.load_json(model_path + "config.json")
+    config.load_json(os.path.join(model_path, "config.json"))
     model = Xtts.init_from_config(config)
     model.load_checkpoint(
         config, checkpoint_dir=model_path, use_deepspeed=use_deepspeed
