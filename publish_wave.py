@@ -4,7 +4,7 @@ from signal import SIGINT, SIGTERM
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(".env.production")
 import numpy as np
 from livekit import rtc, api
 

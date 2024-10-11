@@ -7,6 +7,9 @@ import numpy as np
 from scipy.io import wavfile
 from livekit import api, rtc
 import librosa
+from dotenv import load_dotenv
+
+load_dotenv()
 
 SAMPLE_RATE = 48000
 NUM_CHANNELS = 1
@@ -158,7 +161,7 @@ async def main(room: rtc.Room) -> None:
         logging.info("reconnected")
 
     await asyncio.sleep(2)
-    await room.local_participant.publish_data("hello world")
+    # await room.local_participant.publish_data("hello world")
 
 
 async def publish_frames(source: rtc.AudioSource, frequency: int):
