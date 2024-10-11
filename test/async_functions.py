@@ -157,7 +157,7 @@ async def receive_audio_frames(audio_stream: rtc.AudioStream, source: rtc.audio_
     printing.printred("Started Receiving audio frames")
     groq_client = GroqLLMHandlers(api_key=os.getenv("GROQ_API_KEY"))
 
-    output_filename = "audio_new.wav"
+    output_filename = "audios/audio_new.wav"
     i = 0
     # audio_data = bytearray()
     all_buffer = bytearray()
