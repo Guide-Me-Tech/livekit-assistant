@@ -156,12 +156,7 @@ def ttsStreamEnglishRus(
 
         # torchaudio.save(f" chunk_{i}.wav", chunk.squeeze().unsqueeze(0).cpu(), 24000)
         # IPython.display.display(IPython.display.Audio(f"chunk_{i}.wav"))
-        b = io.BytesIO()
-        j = chunk.squeeze().cpu().numpy()
-        sf.write(b, j, 24000, format="WAV", subtype="PCM_16")
-        # wav_chunks.append(j)
-        # wav_chunks_bytes.append(b.getvalue())
-        yield b.getvalue()
+        yield chunk.squeeze().cpu().numpy()
 
 
 def check_cuda_smi() -> bool:

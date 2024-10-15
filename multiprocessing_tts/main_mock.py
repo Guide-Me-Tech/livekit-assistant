@@ -33,11 +33,11 @@ def processor(worker_processes_queue: Queue, worker_id: int):
         id_to_use = 0
     print(f"Using device: {device}")
     print(f"ID to use: {id_to_use}")
-    model, gpt_cond_latent, speaker_embedding = load_model_for_inference(
-        downloaded_model_path,
-        speaker_audi_paths=["female.wav"],
-        device_id=id_to_use,
-    )
+    # model, gpt_cond_latent, speaker_embedding = load_model_for_inference(
+    #     downloaded_model_path,
+    #     speaker_audi_paths=["female.wav"],
+    #     device_id=id_to_use,
+    # )
 
     while True:
         # read from kafka or any message queue
@@ -48,15 +48,30 @@ def processor(worker_processes_queue: Queue, worker_id: int):
         print("WORK:", work)
         shared_memory_name = work["shm_name"]
         shm_queue = SharedMemoryWithIndexes(shared_memory_name)
-        for audio_chunk in ttsStreamEnglishRus(
-            model=model,
-            gpt_cond_latent=gpt_cond_latent,
-            speaker_embedding=speaker_embedding,
-            text=work["text"],
-            language=work["language"],
-        ):
-            print("Enqueuing audio chunk ", audio_chunk.shape)
-            shm_queue.enqueue(audio_chunk)
+        # for audio_chunk in ttsStreamEnglishRus(
+        #     model=model,
+        #     gpt_cond_latent=gpt_cond_latent,
+        #     speaker_embedding=speaker_embedding,
+        #     text=work["text"],
+        #     language=work["language"],
+        # ):
+        # # open the audio with numpy array
+
+        rate, audio_chunk = wavfile.read("../audios/roma.wav")
+        # print(audio_chunk[0:10])
+        # get only first 48000 samples
+        # audio_chunk = audio_chunk[:96000]
+        for i in range(2):
+            print(f"Enqueuing message: {i} ----- SHM: {shared_memory_name}")
+            start = i * shm_queue.item_size
+            ending = (i + 1) * shm_queue.item_size
+            print(start, ending)
+            temp = audio_chunk[start:ending]
+            # temp = audio_chunk[
+            #     i * shm_queue.item_size : (i + 1) * shm_queue.item_size
+            # ]
+            shm_queue.enqueue(temp)
+            # time.sleep(1)
         shm_queue.close()
         # time.sleep(100)
 

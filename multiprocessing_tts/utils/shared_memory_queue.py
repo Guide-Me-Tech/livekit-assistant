@@ -3,6 +3,9 @@ import time
 from multiprocessing import shared_memory
 
 
+# class SharedMemoryQueue
+
+
 class SharedMemoryWithIndexes:
     """
     A class that provides a queue-like mechanism using shared memory to store and retrieve fixed-size audio chunks.
@@ -148,6 +151,12 @@ class SharedMemoryWithIndexes:
             self.memory[1 + 128 : 1 + 128 * 2] = self.free_memory_index
 
     def close(self):
+        """
+        Close the shared memory.
+        """
+        self.memory.close()
+
+    def delete(self):
         """
         Close and unlink the shared memory.
 
